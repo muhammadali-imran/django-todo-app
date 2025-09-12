@@ -1,5 +1,8 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 
 # Create your views here.
 def home(request):
-    return HttpResponse("This is a todo app.")
+    return render(request, "home.html")
+
+def task_list(request):
+    return render(request, "tasks.html")
