@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Django ToDo{% endblock %}</title>
+
+  <!-- Base CSS -->
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% block extra_css %}{% endblock %}
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="logo">
+        <span class="logo-icon">📝</span>
+        Django ToDo
+      </h1>
+      <nav class="nav">
+        <a href="{% url 'home' %}"
+           class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+          Home
+        </a>
+        <a href="{% url 'task_list' %}"
+           class="nav-link {% if request.resolver_match.url_name == 'task_list' %}active{% endif %}">
+          Tasks
+        </a>
+      </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="main">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 Django ToDo App</p>
+    </footer>
+  </div>
+
+  <!-- Base JS -->
+  <script src="{% static 'js/base.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

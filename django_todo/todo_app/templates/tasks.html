@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Tasks - Django ToDo{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tasks.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="tasks-container">
+  <div class="tasks-header">
+    <h2 class="tasks-title">
+      <span class="title-icon">📋</span>
+      Your Tasks
+    </h2>
+    <div class="tasks-stats">
+      <span class="stat-badge total">{{ tasks|length }} Total</span>
+      <span class="stat-badge completed">{{ tasks|dictsort:"done"|yesno:"Done,Not Done" }}</span>
+    </div>
+  </div>
+
+  {% if tasks %}
+    <div class="progress-section">
+      <div class="progress-bar">
+        <div class="progress-fill" 
+             data-progress="{{ completed|divisibleby:tasks|default:0 }}"></div>
+      </div>
+      <p class="progress-text">
+        {{ percent_complete }}% Complete
+      </p>
+    </div>
+
+    <div class="task-list">
+      {% for task in tasks %}
+        <div class="task-item {% if task.done %}completed{% endif %}" data-task-id="{{ task.id }}">
+          <div class="task-content">
+            <span class="task-status">
+              {% if task.done %}✅{% else %}⬜{% endif %}
+            </span>
+            <span class="task-text">{{ task.title }}</span>
+          </div>
+          <div class="task-actions">
+            <button class="task-btn toggle" title="Toggle completion">
+              {% if task.done %}↶{% else %}✓{% endif %}
+            </button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <div class="empty-icon">📝</div>
+      <h3>No tasks yet!</h3>
+      <p>Create your first task to get started</p>
+      <button class="add-btn">Add First Task</button>
+    </div>
+  {% endif %}
+
+  <div class="action-buttons">
+    <button class="btn primary" id="addTaskBtn">
+      <span class="btn-icon">+</span>
+      Add Task
+    </button>
+    {% if tasks %}
+    <button class="btn secondary" id="clearCompletedBtn">
+      <span class="btn-icon">🗑</span>
+      Clear Done
+    </button>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/tasks.js' %}"></script>
+{% endblock %}

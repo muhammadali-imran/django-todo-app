@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Django ToDo{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+  <h2 class="hero-title">Welcome to Your Task Manager! 🚀</h2>
+  <p class="hero-subtitle">Stay organized and boost your productivity</p>
+  
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">📋</div>
+      <div class="stat-info">
+        <h3>Easy Management</h3>
+        <p>Organize tasks effortlessly</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">⚡</div>
+      <div class="stat-info">
+        <h3>Lightning Fast</h3>
+        <p>Quick and responsive</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-info">
+        <h3>Stay Focused</h3>
+        <p>Track what matters</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cta-section">
+    <a href="{% url 'task_list' %}" class="cta-btn">
+      View Tasks →
+    </a>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
