@@ -15,59 +15,40 @@
       Your Tasks
     </h2>
     <div class="tasks-stats">
-      <span class="stat-badge total">{{ tasks|length }} Total</span>
-      <span class="stat-badge completed">{{ tasks|dictsort:"done"|yesno:"Done,Not Done" }}</span>
+      <!-- JS will update these -->
+      <span class="stat-badge total" id="totalTasks">0 Total</span>
+      <span class="stat-badge completed" id="completedTasks">0 Done</span>
     </div>
   </div>
 
-  {% if tasks %}
-    <div class="progress-section">
-      <div class="progress-bar">
-        <div class="progress-fill" 
-             data-progress="{{ completed|divisibleby:tasks|default:0 }}"></div>
-      </div>
-      <p class="progress-text">
-        {{ percent_complete }}% Complete
-      </p>
+  <!-- Progress bar (updated by JS) -->
+  <div class="progress-section">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" data-progress="0"></div>
     </div>
+    <p class="progress-text" id="progressText">0% Complete</p>
+  </div>
 
-    <div class="task-list">
-      {% for task in tasks %}
-        <div class="task-item {% if task.done %}completed{% endif %}" data-task-id="{{ task.id }}">
-          <div class="task-content">
-            <span class="task-status">
-              {% if task.done %}✅{% else %}⬜{% endif %}
-            </span>
-            <span class="task-text">{{ task.title }}</span>
-          </div>
-          <div class="task-actions">
-            <button class="task-btn toggle" title="Toggle completion">
-              {% if task.done %}↶{% else %}✓{% endif %}
-            </button>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <div class="empty-state">
+  <!-- Task list will be rendered by JS -->
+  <div class="task-list" id="taskList">
+    <div class="empty-state" id="emptyState">
       <div class="empty-icon">📝</div>
       <h3>No tasks yet!</h3>
       <p>Create your first task to get started</p>
-      <button class="add-btn">Add First Task</button>
+      <button class="add-btn" id="firstTaskBtn">Add First Task</button>
     </div>
-  {% endif %}
+  </div>
 
+  <!-- Action buttons -->
   <div class="action-buttons">
     <button class="btn primary" id="addTaskBtn">
       <span class="btn-icon">+</span>
       Add Task
     </button>
-    {% if tasks %}
     <button class="btn secondary" id="clearCompletedBtn">
       <span class="btn-icon">🗑</span>
       Clear Done
     </button>
-    {% endif %}
   </div>
 </div>
 {% endblock %}
