@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+*.mo
+*.swp
+db.sqlite3
+media/
+
+# VSCode
+.vscode/
+.settings/
+
+# Migrations (keep only __init__.py)
+*/migrations/*
+!*/migrations/__init__.py
+
+# Coverage/testing
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+htmlcov/
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python typing
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Pipenv/Poetry
+Pipfile.lock
+poetry.lock
+
+# Others
+*.idea/

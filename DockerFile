@@ -1,0 +1,31 @@
+# ===========================
+# Step 1 — Base Image
+# ===========================
+FROM python:3.13.7-slim
+
+# Prevents Python from writing .pyc files & buffers
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# ===========================
+# Step 2 — Set Working Directory
+# ===========================
+WORKDIR /todo_app
+
+# ===========================
+# Step 3 — Install Dependencies
+# ===========================
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# ===========================
+# Step 4 — Copy Project Files
+# ===========================
+COPY . /app/
+
+# ===========================
+# Step 5 — Expose Port & Run App
+# ===========================
+EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
