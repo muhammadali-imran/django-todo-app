@@ -8,7 +8,7 @@ __pycache__/
 *.egg-info/
 dist/
 build/
-
+django_todo/settings.py
 # Virtual environment
 env/
 venv/

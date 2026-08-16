@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  web: 
+    build: .
+    container_name: my_django_todo_app_container
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: python manage.py runserver 0.0.0.0:8000
