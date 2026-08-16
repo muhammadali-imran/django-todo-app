@@ -3,7 +3,7 @@ version: '3'
 services:
   web: 
     build: .
-    container_name: my_django_todo_app_container
+    container_name: TODO-backend
     ports:
       - "8000:8000"
     volumes:
